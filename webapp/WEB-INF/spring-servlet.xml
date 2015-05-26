@@ -27,6 +27,9 @@
 	</bean>
 
 	<!-- 메세지 컨버터 등록 -->
+	<!-- 
+	
+	
 	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
 	   <property name="messageConverters">
 	      <list>
@@ -35,7 +38,7 @@
 	      </list>
 	   </property>
 	</bean>
-
+ -->
 	<context:annotation-config />
 	<context:component-scan base-package="com.sds.icto" />
 

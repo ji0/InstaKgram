@@ -26,4 +26,10 @@
 	</update>
 	
 	
+	<select id="checkEmail" resultClass="MemberVO">
+		<![CDATA[
+		select * from member 
+		]]>
+	</select>
+	
 </sqlMap> 

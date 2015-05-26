@@ -32,7 +32,7 @@
 	<!-- oracle datasource -->
 	<bean id="oracleDatasource" class="oracle.jdbc.pool.OracleDataSource"
 		destroy-method="close">
-		<property name="URL" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="URL" value="jdbc:oracle:thin:@70.12.114.161:1521:xe" />
 		<property name="user" value="webdb" />
 		<property name="password" value="webdb" />
 		<property name="connectionCachingEnabled" value="true" />

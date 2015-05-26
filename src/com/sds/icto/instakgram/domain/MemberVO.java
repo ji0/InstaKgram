@@ -2,13 +2,19 @@ package com.sds.icto.instakgram.domain;
 
 public class MemberVO {
 	
-	
 	private Long no;
 	private String name;
 	private String email;
 	private String password;
 	private String gender;
+	private String pic_ref;
 	
+	public String getPic_ref() {
+		return pic_ref;
+	}
+	public void setPic_ref(String pic_ref) {
+		this.pic_ref = pic_ref;
+	}
 	public Long getNo() {
 		return no;
 	}
@@ -39,8 +45,4 @@ public class MemberVO {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	
-	
-	
-
 }

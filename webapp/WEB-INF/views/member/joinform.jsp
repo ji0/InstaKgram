@@ -1,20 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!doctype html>
 <html>
-
 <script type="text/javascript"
 	src="/InstaKgram/assets/js/jquery/jquery-1.9.0.js"></script>
-
 <script>
 	$(function() {
 		$("#join-form").submit(function() {
 			//이름 체크랑 딴 거 비었나 중복 확인
+			
 			if ($("#email-checked").is(":visible") == false) {
 				alert("이메일 중복 여부 확인좀");
 				return false;
 			} else {
 				return true;
 			}
+		});
+		
+		$("#email").keyup(function() {
+
+			var email = $("#email").val();
+			
+			var postData = "email=" + email;
+			$.ajax({
+				url : "/InstaKgram/member/email_check",
+				type : "post",
+				data : postData,
+				
+				success : function(response) {
+					if (response.result == false) {
+						$("#keydown-ok").show();
+						$("#keydown-no").hide();
+					} else {
+						$("#keydown-no").show();
+						$("#keydown-ok").hide();
+					}
+					if(email == "") {
+						$("#keydown-ok").hide();
+					}
+					console.log(response);
+				},
+				error : function(jqXHR, status, e) {
+					console.error(status + " : " + e);
+				}
+
+			});
 		});
 		
 		$("#email").change(function() {
@@ -38,7 +67,6 @@
 					if (response.result == false) {
 						$("#check-email").hide();
 						$("#email-checked").show();
-
 					} else {
 						alert(response.data);
 					}
@@ -51,7 +79,6 @@
 			});
 
 		});
-
 	});
 </script>
 
@@ -76,8 +103,9 @@
 					
 					<img id="email-checked" src="/InstaKgram/assets/images/check.png"
 						 style="width: 20px; display: none">
-					<input id="check-email" type="button" value="id 중복체크">
 					
+					<label id="keydown-ok" style="display: none">사용가능</label>
+					<label id="keydown-no" style="display: none">사용불가</label>
 					
 					<label class="block-label">패스워드</label>
 					<input name="password" type="password" value="">
