@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.sds.icto.instakgram.domain.DBoardVO;
 import com.sds.icto.instakgram.domain.GBoardVO;
+import com.sds.icto.instakgram.domain.MemberVO;
+import com.sds.icto.instakgram.domain.ReplyVO;
 import com.sds.icto.instakgram.repository.DBoardDAO;
 import com.sds.icto.instakgram.repository.GBoardDAO;
 
@@ -27,7 +29,7 @@ public class DBoardController {
 	@Autowired
 	DBoardDAO dboardDao;
 
-	@RequestMapping("/index")
+	@RequestMapping({"/index",""})
 	public String index(Model model) {
 
 		List<DBoardVO> list = dboardDao.fetchList();
@@ -36,28 +38,71 @@ public class DBoardController {
 		return "dboard/list";
 	}
 
+	
+	@RequestMapping("/like")
+	public String like(@RequestParam Long no,
+			@RequestParam Long like_cnt) {
 
+	
+		dboardDao.like(no, like_cnt);
+
+
+		return "redirect:/dboard/index";
+
+	}
+
+	
+	
+	@RequestMapping(value = "/reply", method = RequestMethod.POST)
+	public String insert(HttpSession session, @RequestParam String reply, @RequestParam Long no) {
+		
+		ReplyVO vo = new ReplyVO();
+		vo.setContent(reply);
+		vo.setDaily_no(no);
+		
+		MemberVO vo2 = (MemberVO) session.getAttribute("authMember");
+		vo.setMember_no(vo2.getNo());
+		vo.setMember_name(vo2.getName());
+		
+		System.out.println(reply);
+		System.out.println(no);
+		System.out.println(vo2.getNo());
+		System.out.println(vo2.getName());
+		
+		/*	vo.setPassword(password);
+		vo.setMessage(message);
+		*/
+		dboardDao.reply(vo);
+
+		return "redirect:/dboard/index";
+	}
+	
+	
+	
+	
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public String insert(
-			@RequestParam String name,
-			@RequestParam String password, 
-			@RequestParam String message) {
+	public String insert(HttpSession session, @RequestParam String content) {
 		
 		DBoardVO vo = new DBoardVO();
-	/*	vo.setName(name);
-		vo.setPassword(password);
+		vo.setContent(content);
+		
+		MemberVO vo2 = (MemberVO) session.getAttribute("authMember");
+		vo.setMember_no(vo2.getNo());
+		vo.setMember_name(vo2.getName());
+		
+		/*	vo.setPassword(password);
 		vo.setMessage(message);
 		*/
 		dboardDao.insert(vo);
 
-		return "redirect:/gboard/index";
+		return "redirect:/dboard/index";
 	}
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	// 링크??겟방??
 	public String delete(@RequestParam  Long no) {
 	
-		return "gboard/deleteform";
+		return "dboard/deleteform";
 	}
 
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
@@ -65,7 +110,7 @@ public class DBoardController {
 		
 		dboardDao.delete(no, password);
 				
-		return "redirect:/gboard/index";
+		return "redirect:/dboard/index";
 
 	}
 

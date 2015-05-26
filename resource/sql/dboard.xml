@@ -2,8 +2,9 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="dboard">
 
-<typeAlias alias="DBoardVO" type="com.sds.icto.instakgram.domain.DBoardVO" />
-	
+	<typeAlias alias="DBoardVO" type="com.sds.icto.instakgram.domain.DBoardVO" />
+	<typeAlias alias="ReplyVO" type="com.sds.icto.instakgram.domain.ReplyVO" />
+
 
 	<delete id="deleteAll">
 		<![CDATA[
@@ -13,7 +14,15 @@
 
 	<insert id="insert" parameterClass="DBoardVO">
 		<![CDATA[
-		insert into dboard values(dboard_seq.nextval, #pic_ref#, #content#,0, member_name, member_no, sysdate)
+		insert into dboard values(dboard_no_seq.nextval, '1', #content#, 0, #member_name#, #member_no#, sysdate)
+		
+		]]>
+	</insert>
+	
+	
+	<insert id="reply" parameterClass="ReplyVO">
+		<![CDATA[
+		insert into dboard values(reply_no_seq.nextval, #content#, #daily_no#, #member_name#, #member_no#, sysdate)
 		
 		]]>
 	</insert>
@@ -26,7 +35,14 @@
 	</select>
 
 
-<delete id="delete" parameterClass="java.util.Map">
+	<update id="pluslike" parameterClass="java.util.Map">
+		<![CDATA[
+		update dboard SET like_cnt = #v# where no = #n#
+		]]>
+	</update>
+
+
+	<delete id="delete" parameterClass="java.util.Map">
 		<![CDATA[
 		delete 
 		from dboard 
@@ -35,5 +51,5 @@
 	</delete>
 
 
-	
+
 </sqlMap> 

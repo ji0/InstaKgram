@@ -16,6 +16,8 @@ import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.sds.icto.instakgram.domain.DBoardVO;
+import com.sds.icto.instakgram.domain.GBoardVO;
+import com.sds.icto.instakgram.domain.ReplyVO;
 
 
 @Repository
@@ -43,6 +45,28 @@ public class DBoardDAO {
 	
 	}
 
+	public void reply(ReplyVO vo) {
+
+		sqlMapClientTemplate.insert("dboard.reply", vo);
+
+	}
+	
+	
+
+	public void like(Long no, Long like_cnt) {
+
+		like_cnt++;
+
+		Map<String, Long> map = new HashMap<String, Long>();
+		map.put("n", no);
+		map.put("v", like_cnt);
+
+		sqlMapClientTemplate.update("dboard.pluslike", map);
+
+		}
+
+	
+	
 	public void delete() {
 		sqlMapClientTemplate.delete("dboard.deleteAll");
 	}
