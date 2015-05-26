@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="dboard">
+
+<typeAlias alias="DBoardVO" type="com.sds.icto.instakgram.domain.DBoardVO" />
+	
+
+	<delete id="deleteAll">
+		<![CDATA[
+		delete from dboard
+		]]>
+	</delete>
+
+	<insert id="insert" parameterClass="DBoardVO">
+		<![CDATA[
+		insert into dboard values(dboard_seq.nextval, #pic_ref#, #content#,0, member_name, member_no, sysdate)
+		
+		]]>
+	</insert>
+
+	<select id="list" resultClass="DboardVO">
+		<![CDATA[
+		select *
+		  from dboard
+		]]>
+	</select>
+
+
+<delete id="delete" parameterClass="java.util.Map">
+		<![CDATA[
+		delete 
+		from dboard 
+		where no = #no#
+		]]>
+	</delete>
+
+
+	
+</sqlMap> 

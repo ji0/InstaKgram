@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+@import "instakgram.css";
+
+#dboard			{ margin:20px auto;	width:540px; }
+
+#dboard form, 
+#dboard table	{ width:100% }
+
+#dboard table,	
+#dboard table td { border:1px solid #333 }
+#dboard table td { padding:5px }
+
+#dboard ul		{ width:100%; margin-top:20px }
+#dboard ul li	{ width:100%; margin-top:10px }
+
+
+#dboard.delete-form	{ height:200px }
+#dboard.delete-form form {
+	width:300px;
+	padding:10px;
+	border:1px solid #666;
+	border-radius: 10px;
+	margin:50px auto;
+}
+#dboard.delete-form a	{ display:block; margin:20px auto; width:110px }
+
+#dboard.delete-message p	{ padding:100px; height:50px; text-align:center }
+
+#dboard textarea#content	{ width: 100%; border:none; height: 100px; resize: none; outline: none; }
