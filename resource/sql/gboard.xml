@@ -14,7 +14,7 @@
 	<insert id="insert" parameterClass="GBoardVO">
 		<![CDATA[
 		
-		insert into gboard values(gboard_no_seq.nextval, #title#, #content#, #member_no#, #member_name#, 0, sysdate )
+		insert into gboard values(gboard_no_seq.nextval, #title#, #content#, #pic_ref#, #member_no#, #member_name#, 0, sysdate )
 			
 		]]>
 	</insert>
