@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sds.icto.instakgram.domain.MemberVO;
-import com.sds.icto.instakgram.repository.BoardDAO;
+import com.sds.icto.instakgram.repository.GBoardDAO;
 import com.sds.icto.instakgram.repository.MemberDAO;
 import com.sds.icto.instakgram.service.MemberService;
 

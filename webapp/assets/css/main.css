@@ -1,5 +1,5 @@
 @CHARSET "UTF-8";
-@import "mysite.css";
+@import "instakgram.css";
 
 #site-introduction				{ padding:20px;	width:540px; }
 #site-introduction img#profile	{ display:block; float:left }

@@ -17,8 +17,6 @@
 			<c:import url="/WEB-INF/views/include/header.jsp">
 			</c:import>
 			
-
-
 		</div>
 		<div id="wrapper">
 			<div id="content">

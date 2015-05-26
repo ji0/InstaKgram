@@ -18,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.sds.icto.instakgram.domain.BoardVO;
-import com.sds.icto.instakgram.domain.GuestBookVO;
+import com.sds.icto.instakgram.domain.GBoardVO;
+import com.sds.icto.instakgram.domain.DBoardVO;
 import com.sds.icto.instakgram.domain.MemberVO;
 import com.sds.icto.instakgram.exception.MemberDAOException;
 

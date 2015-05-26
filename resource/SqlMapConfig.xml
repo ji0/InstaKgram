@@ -4,6 +4,9 @@
     "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
 <sqlMapConfig>
 
+
+
+
 	<!-- settings -->
 	<settings useStatementNamespaces="true"/>
 

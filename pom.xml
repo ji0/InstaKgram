@@ -37,14 +37,14 @@
 			<artifactId>ojdbc6</artifactId>
 			<version>11.1.0.7.0</version>
 		</dependency>
-		
-			<!-- jstl -->
+
+		<!-- jstl -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-		
+
 
 
 		<!-- spring jdbc -->
@@ -53,31 +53,37 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-		
-		
+
+
 		<!-- iBatis -->
 		<dependency>
 			<groupId>org.apache.ibatis</groupId>
 			<artifactId>ibatis-sqlmap</artifactId>
 			<version>2.3.4.726</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>3.1.0.RELEASE</version>
+		</dependency>
 		
-  <dependency>
-  	<groupId>org.springframework</groupId>
-  	<artifactId>spring-orm</artifactId>
-  	<version>3.1.0.RELEASE</version>
-  </dependency>
-  
-  
+		<!-- jackson -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.1.1</version>
+		</dependency>
+
 	</dependencies>
-	
+
 	<repositories>
-			  <repository>
-	          <id>oracle</id>
-                <name>ORACLE JDBC Repository</name>
-                <url>http://maven.jahia.org/maven2</url>
-            </repository>
-       </repositories>
+		<repository>
+			<id>oracle</id>
+			<name>ORACLE JDBC Repository</name>
+			<url>http://maven.jahia.org/maven2</url>
+		</repository>
+	</repositories>
 
 
 	<build>
