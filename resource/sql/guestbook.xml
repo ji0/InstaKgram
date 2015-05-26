@@ -2,7 +2,7 @@
 <!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="guestbook">
 
-<typeAlias alias="GuestBookVO" type="com.sds.icto.mysite.domain.GuestBookVO" />
+<typeAlias alias="GuestBookVO" type="com.sds.icto.instakgram.domain.GuestBookVO" />
 	
 
 	<delete id="deleteAll">

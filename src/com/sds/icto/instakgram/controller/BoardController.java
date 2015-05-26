@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.sds.icto.mysite.domain.BoardVO;
-import com.sds.icto.mysite.domain.MemberVO;
-import com.sds.icto.mysite.repository.BoardDAO;
+import com.sds.icto.instakgram.domain.BoardVO;
+import com.sds.icto.instakgram.domain.MemberVO;
+import com.sds.icto.instakgram.repository.BoardDAO;
 
 @Controller
 @RequestMapping("/board")

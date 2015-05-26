@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.sds.icto.mysite.domain.MemberVO;
-import com.sds.icto.mysite.repository.BoardDAO;
-import com.sds.icto.mysite.repository.MemberDAO;
-import com.sds.icto.mysite.service.MemberService;
+import com.sds.icto.instakgram.domain.MemberVO;
+import com.sds.icto.instakgram.repository.BoardDAO;
+import com.sds.icto.instakgram.repository.MemberDAO;
+import com.sds.icto.instakgram.service.MemberService;
 
 @Controller
 @RequestMapping("/member")

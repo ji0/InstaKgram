@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.sds.icto.mysite.domain.GuestBookVO;
-import com.sds.icto.mysite.repository.GuestBookDAO;
+import com.sds.icto.instakgram.domain.GuestBookVO;
+import com.sds.icto.instakgram.repository.GuestBookDAO;
 
 
 
