@@ -31,19 +31,10 @@
 			var postData = "email=" + email;
 			$.ajax({
 				url : "/InstaKgram/test",
-				//url : "/message-converter/api/checkEmail?rnd="+ Math.floor(Math.random() * 999999999),
-				//type : "get",
 				type : "post",
-				//    dataType: "json",
 				data : postData,
-				//    contentType: "application/json",
 				
 				success : function(response) {
-					
-					//alert(response.name + ":" + response.data);
-					//var memberVO = response;
-					//alert(response);
-
 					if (response.result == false) {
 						$("#check-email").hide();
 						$("#email-checked").show();
@@ -52,7 +43,6 @@
 						alert(response.data);
 					}
 					console.log(response);
-
 				},
 				error : function(jqXHR, status, e) {
 					console.error(status + " : " + e);
