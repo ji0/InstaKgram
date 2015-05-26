@@ -11,7 +11,7 @@
 	<transactionManager type="JDBC">
 		<dataSource type="SIMPLE">
 			<property name="JDBC.Driver" value="oracle.jdbc.driver.OracleDriver" />
-			<property name="JDBC.ConnectionURL" value="jdbc:oracle:thin:@localhost:1521:xe" />
+			<property name="JDBC.ConnectionURL" value="jdbc:oracle:thin:@70.12.114.161:1521:xe" />
 			<property name="JDBC.Username" value="webdb" />
 			<property name="JDBC.Password" value="webdb" />
 		</dataSource>

@@ -6,10 +6,7 @@
 	src="/InstaKgram/assets/js/jquery/jquery-1.9.0.js"></script>
 
 <script>
-
-
 	$(function() {
-
 		$("#join-form").submit(function() {
 			//이름 체크랑 딴 거 비었나 중복 확인
 			if ($("#email-checked").is(":visible") == false) {
@@ -19,39 +16,39 @@
 				return true;
 			}
 		});
-
+		
 		$("#email").change(function() {
 			$("#check-email").show();
 			$("#email-checked").hide();
 		});
+		
 		$("#check-email").click(function() {
-
 			var email = $("#email").val();
-			if (email == "") {
+			if(email == "") {
 				alert("메일을 입력하세요");
 				return;
 			}
 			var postData = "email=" + email;
 			$.ajax({
-				url : "/message-converter/api/checkEmail",
+				url : "/InstaKgram/test",
 				//url : "/message-converter/api/checkEmail?rnd="+ Math.floor(Math.random() * 999999999),
 				//type : "get",
 				type : "post",
 				//    dataType: "json",
 				data : postData,
 				//    contentType: "application/json",
+				
 				success : function(response) {
+					
 					//alert(response.name + ":" + response.data);
 					//var memberVO = response;
 					//alert(response);
 
 					if (response.result == false) {
-						//오키
 						$("#check-email").hide();
 						$("#email-checked").show();
 
 					} else {
-
 						alert(response.data);
 					}
 					console.log(response);
@@ -68,8 +65,6 @@
 	});
 </script>
 
-
-
 <head>
 <title>InstaKgram</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -82,16 +77,17 @@
 		</div>
 		<div id="content">
 			<div id="user">
-
 				<form id="join-form" name="joinForm" method="post" action="">
 					<label class="block-label" for="name">이름</label>
 					<input id="name" name="name" type="text" value="">
 
 					<label class="block-label" for="email">이메일</label>
 					<input id="email" name="email" type="text" value="">
-					<img id="email-checked"
-					src="/InstaKgram/assets/images/check.png"
-					style="width: 20px; display: none"><input type="button" value="id 중복체크">
+					
+					<img id="email-checked" src="/InstaKgram/assets/images/check.png"
+						 style="width: 20px; display: none">
+					<input id="check-email" type="button" value="id 중복체크">
+					
 					
 					<label class="block-label">패스워드</label>
 					<input name="password" type="password" value="">
