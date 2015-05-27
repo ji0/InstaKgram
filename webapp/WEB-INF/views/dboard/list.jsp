@@ -34,6 +34,7 @@
 
 
 
+
 <html>
 <head>
 <title>InstaKgram</title>
@@ -122,45 +123,56 @@
 							</div>
 							<br>
 						</c:forEach> <br></li>
-						
-						
+
+
 				</ul>
 
 			</div>
-	
-<div id= "paging">
-					<c:if test="${count>0}">
-						<fmt:formatNumber var="pageCount"
-							value="${count / pageSize + ( count % pageSize == 0 ? 0 : 1)}"
-							pattern="0" />
-						<fmt:formatNumber var="valueA" value="${pageNum/5}" pattern="0" />
-						<fmt:formatNumber var="startPage" value="${valueA*5+1 }"
-							pattern="0" />
-						<c:set var="pageBlock" value="5" />
-						<fmt:formatNumber var="endPage" value="${startPage + pageBlock-1}"
-							pattern="0" />
-						<c:if test="${ endPage > pageCount}">
-					
-							<fmt:formatNumber var="endPage" value="${pageCount}" pattern="0" />
-						</c:if>
-						<c:if test="${startPage > 5 }">
-							<a href="/InstaKgram/dboard?pageNum=${startPage - 5}">[이전]</a>
-						</c:if>
 
-						현재페이지:${currentPage }
-						<c:forEach begin="${startPage }" end="${endPage }" step="1"
-							var="i">여기? 	${endPage} : 
+			<div id="paging">
+				<c:if test="${count>0}">
+					<fmt:formatNumber var="pageCount"
+						value="${count / pageSize + ( count % pageSize == 0 ? 0 : 1)}"
+						pattern="0" />
+					<!-- 	<fmt:formatNumber var="valueA" value="${pageNum/5}" pattern="0" />  -->
+
+					<fmt:formatNumber var="valueA"
+						value="${((pageNum)/5)+(1-(((pageNum)/5)%1))%1}" pattern="0" />
+					
+				
+					<fmt:formatNumber var="startPage" value="${valueA*5-4}" pattern="0" />
+
+					<c:set var="valueC" value="${((count)/5)+(1-(((count)/5)%1))%1}" />
+					<c:set var="pageBlock" value="5" />
+					<c:set var="endPageC" value="${startPage + pageBlock-1}" />
+					
+					<fmt:formatNumber var="endPage" value="${startPage + pageBlock-1}"
+						pattern="0" />
+					<c:if test="${ endPage > pageCount}">
+
+						<fmt:formatNumber var="endPageC" value="${pageCount}" pattern="0" />
+					</c:if>
+					<c:if test="${startPage > 5 }">
+						<a href="/InstaKgram/dboard?pageNum=${startPage - 5}">[이전]</a>
+					</c:if>
+
+
+					<c:forEach begin="${startPage }" end="${endPage }" step="1" var="i">
+						<c:if test="${valueC >= i}">
 							<a href="/InstaKgram/dboard?pageNum=${i}">[${i}]</a>
-						</c:forEach>
-						
-						<c:if test="${endPage < pageCount }">
+						</c:if>
+					</c:forEach>
+	
+	
+ 						<c:if test="${endPageC < valueC }">
 							<a href="/InstaKgram/dboard?pageNum=${startPage + 5}">[다음]</a>
 						</c:if>
 					</c:if>
+				
 
-					<%--<%for (int i = startPage ; i <= endPage ; i++) {  %>
+				<%--<%for (int i = startPage ; i <= endPage ; i++) {  %>
         <a>[<%= i %>]</a>--%>
-				</div>
+			</div>
 
 
 		</div>
