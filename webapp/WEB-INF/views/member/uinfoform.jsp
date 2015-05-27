@@ -25,13 +25,12 @@
 			<div id="user">
 
 				<form id="uinfo-form" name="uinfoForm" method="post"
-					action="/InstaKgram/member/uinfo">
+					action="/InstaKgram/member/uinfo" enctype="multipart/form-data">
 					<input type="hidden" name="no" value="${authMember.no}"> <label
 						class="block-label" for="name">이름</label> <input id="name"
-						name="name" type="text" value="${authMember.name }"> <label
-						class="block-label" for="email">이메일</label> <input id="email"
-						name="email" type="text" value="${authMember.email }"> <input
-						type="button" value="id 중복체크"> <label class="block-label">패스워드</label>
+						name="name" type="text" value="${authMember.name }">
+						
+						<label class="block-label">패스워드</label>
 					<input name="password" type="password" value="">
 
 					<fieldset>
@@ -52,15 +51,16 @@
 							<label>남</label>
 							<input type="radio" name="gender" value="male" checked="checked">
 						</c:if>
-
-
+							
+							<input type="hidden" name="email" value="">
 					</fieldset>
-
+							
+						
 					<fieldset>
-						<legend>약관동의</legend>
-						<input id="agree-prov" type="checkbox" name="agreeProv" value="y">
-						<label>서비스 약관에 동의합니다.</label>
+						<input type="hidden" name="deptNo" value="10">
+						<input type="file" id ="file" name="file">
 					</fieldset>
+					
 
 					<input type="submit" value="수정하기">
 

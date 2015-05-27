@@ -14,7 +14,7 @@
 		</div>
 		<div id="content">
 			<div id="board">
-				<form class="board-form" method="post" action="/InstaKgram/gboard/write">
+				<form class="board-form" method="post" action="/InstaKgram/gboard/write" enctype="multipart/form-data">
 					<input type = "hidden" name = "a" value="write">
 					<table class="tbl-ex">
 						<tr>
@@ -32,6 +32,8 @@
 						</tr>
 					</table>
 					<div class="bottom">
+						<input type="hidden" name="deptNo" value="10">
+						<input type="file" id ="file" name="file" value="사진등록하기"><br><br>
 						<a href="/InstaKgram/gboard/index">취소</a>
 						<input type="submit" value="등록">
 					</div>

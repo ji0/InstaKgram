@@ -74,24 +74,56 @@ public class DBoardDAO {
 	public List<DBoardVO> fetchList(Long start, Long end) {
 		@SuppressWarnings("unchecked")
 		
-		
 		Map<String, Long> map = new HashMap<String, Long>();
 		map.put("s", start);
 		map.put("e", end);
-		
 		
 		List<DBoardVO> list = sqlMapClientTemplate.queryForList("dboard.list", map);
 		
 		return list;
 	}
 	
+	//오버라이딩
+	public List<DBoardVO> fetchList(Long start, Long end, Long member_no) {
+		@SuppressWarnings("unchecked")
+		
+		Map<String, Long> map = new HashMap<String, Long>();
+		map.put("s", start);
+		map.put("e", end);
+		map.put("m", member_no);
+		
+		List<DBoardVO> list = sqlMapClientTemplate.queryForList("dboard.choiceList", map);
+		
+		return list;
+	}
+	
+	
 	
 	public List<DBoardVO> cntList() {
 		@SuppressWarnings("unchecked")
 		
+		List<DBoardVO> list = sqlMapClientTemplate.queryForList("dboard.choiceCntlist");
 		
+		return list;
+	}
 	
+	
+	public List<DBoardVO> cntBasicList() {
+		@SuppressWarnings("unchecked")
+		
 		List<DBoardVO> list = sqlMapClientTemplate.queryForList("dboard.cntlist");
+		
+		return list;
+	}
+	
+	//오버라이딩
+	public List<DBoardVO> cntList(Long member_no) {
+		@SuppressWarnings("unchecked")
+		
+		Map<String, Long> map = new HashMap<String, Long>();
+		map.put("m", member_no);
+		
+		List<DBoardVO> list = sqlMapClientTemplate.queryForList("dboard.cntlist",map);
 		
 		return list;
 	}

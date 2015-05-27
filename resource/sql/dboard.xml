@@ -32,12 +32,24 @@
 		select * from (select A.*, rownum as rnum from (dboard)A) where rnum >= #s# and rnum <= #e#
 		]]>
 	</select>
+	
+	<select id="choiceList" parameterClass = "java.util.Map" resultClass="DboardVO">
+		<![CDATA[
+		select * from (select A.*, rownum as rnum from (dboard)A) where rnum >= #s# and rnum <= #e# and member_no=#m#
+		]]>
+	</select>
 
 
 
 	<select id="cntlist" resultClass="DboardVO">
 		<![CDATA[
 		select * from dboard
+		]]>
+	</select>
+	
+	<select id="choiceCntlist" parameterClass = "java.util.Map" resultClass="DboardVO">
+		<![CDATA[
+		select * from dboard where member_no=#m#
 		]]>
 	</select>
 	

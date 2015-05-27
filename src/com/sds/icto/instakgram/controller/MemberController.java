@@ -39,14 +39,10 @@ public class MemberController {
 		return "member/joinform";
 	}
 
-	private static final Log LOG = LogFactory.getLog( MemberController.class );
+	
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String join(@ModelAttribute MemberVO vo, @RequestParam Long deptNo, @RequestParam("file")MultipartFile file) {
 		
-		
-		////////////////////////////
-		LOG.debug( " ######## deptNo : " + deptNo );
-
         String fileOriginalName = file.getOriginalFilename();
         String extName = fileOriginalName.substring( fileOriginalName.lastIndexOf(".") + 1, fileOriginalName.length() );
         String fileName = file.getName();
@@ -65,14 +61,6 @@ public class MemberController {
         saveFileName += calendar.get( Calendar.MILLISECOND );
         saveFileName += ( "." + extName );
 
-        /*
-        LOG.debug( " ######## fileOriginalName : " + fileOriginalName );
-        LOG.debug( " ######## fileName : " + fileName );
-        LOG.debug( " ######## fileSize : " + size );
-        LOG.debug( " ######## fileExtensionName : " + extName );
-        LOG.debug( " ######## saveFileName : " + saveFileName );        
-		*/
-        
         writeFile( file, "c:\\uploads", saveFileName );
 		
         //vo에 사진name등록
@@ -111,18 +99,40 @@ public class MemberController {
 
 	@RequestMapping(value = "/uinfo", method = RequestMethod.POST)
 	public String uinfo(@RequestParam String name, @RequestParam String email,
-			@RequestParam String password, @RequestParam String gender, @RequestParam Long no) {
+			@RequestParam String password, @RequestParam String gender, @RequestParam Long no,
+			@RequestParam Long deptNo, @RequestParam("file")MultipartFile file,
+			HttpSession session
+			) {
 
+		String fileOriginalName = file.getOriginalFilename();
+        String extName = fileOriginalName.substring( fileOriginalName.lastIndexOf(".") + 1, fileOriginalName.length() );
+        String fileName = file.getName();
+        Long size = file.getSize();
+        
+        
+        String saveFileName = "";
+        Calendar calendar = Calendar.getInstance();
+        
+        saveFileName += calendar.get( Calendar.YEAR );
+        saveFileName += calendar.get( Calendar.MONTH );
+        saveFileName += calendar.get( Calendar.DATE );
+        saveFileName += calendar.get( Calendar.HOUR );
+        saveFileName += calendar.get( Calendar.MINUTE );
+        saveFileName += calendar.get( Calendar.SECOND );
+        saveFileName += calendar.get( Calendar.MILLISECOND );
+        saveFileName += ( "." + extName );
+
+        writeFile( file, "c:\\uploads", saveFileName );
+		
 		MemberVO vo = new MemberVO();
 		vo.setName(name);
-		vo.setEmail(email);
 		vo.setPassword(password);
 		vo.setGender(gender);
 		vo.setNo(no);
-
-	
+		vo.setPic_ref(saveFileName);
+		
 		memberDao.update(vo);
-
+		session.setAttribute("authMember", memberDao.getMember(vo));
 		return "redirect:/index";
 
 	}
@@ -136,7 +146,7 @@ public class MemberController {
 	public String login(@ModelAttribute MemberVO vo, HttpSession session) {
 
 		MemberVO memberVO = memberService.authUser(vo);
-
+		System.out.println("한성현 바보");
 		if (memberVO == null) {
 			return "redirect:/member/login?result=fail";
 		}

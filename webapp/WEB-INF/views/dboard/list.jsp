@@ -131,6 +131,7 @@
 
 			<div id="paging">
 				<c:if test="${count>0}">
+				
 					<fmt:formatNumber var="pageCount"
 						value="${count / pageSize + ( count % pageSize == 0 ? 0 : 1)}"
 						pattern="0" />
@@ -139,7 +140,7 @@
 					<fmt:formatNumber var="valueA"
 						value="${((pageNum)/5)+(1-(((pageNum)/5)%1))%1}" pattern="0" />
 					
-				   
+				
 					<fmt:formatNumber var="startPage" value="${valueA*5-4}" pattern="0" />
 
 					<c:set var="valueC" value="${((count)/5)+(1-(((count)/5)%1))%1}" />

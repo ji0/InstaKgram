@@ -39,7 +39,8 @@
 							<td>${vo.no}</td>
 							<td><a
 								href="/InstaKgram/gboard/view?no=${vo.no}&view_cnt=${vo.view_cnt}">${vo.title}</a></td>
-							<td>${vo.member_name}</td>
+							<td><a
+								href="/InstaKgram/dboard/searchDBoard?member_no=${vo.member_no}">${vo.member_name}</a></td>
 							<td>${vo.view_cnt}</td>
 							<td>${vo.reg_date}</td>
 							<td><a href="/InstaKgram/gboard/delete?no=${vo.no}" class="del">삭제</a></td>

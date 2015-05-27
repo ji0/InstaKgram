@@ -33,7 +33,6 @@ public class DBoardController {
 	public String index(Model model, @RequestParam(value = "pageNum", 
             required = false, 
             defaultValue = "1" )  Long pageNum ) {
-
 		
 		if(pageNum.equals(null)){
 			pageNum = (long) 1;
@@ -45,14 +44,15 @@ public class DBoardController {
 		model.addAttribute("list", list);
 		
 		
-		List<DBoardVO> listcnt = dboardDao.cntList();
+		List<DBoardVO> listcnt = dboardDao.cntBasicList();
 		
 		model.addAttribute("count", listcnt.size());
+		
+		System.out.println(listcnt.size());
 		
 		List<ReplyVO> reply = dboardDao.fetchReply();
 		
 		model.addAttribute("reply", reply);
-		
 		
 		return "dboard/list";
 	}
@@ -132,6 +132,32 @@ public class DBoardController {
 		return "redirect:/dboard/index";
 
 	}
+	
+	@RequestMapping("/searchDBoard")
+	public String searchDBoard(@RequestParam Long member_no,
+			Model model, 
+			@RequestParam(value = "pageNum", required = false, defaultValue = "1" )
+			Long pageNum 
+			) {
+		
+		if(pageNum.equals(null)){
+			pageNum = (long) 1;
+		}
+		Long start = (pageNum - 1) * 5 + 1;
+		Long end = pageNum * 5;
 
+		List<DBoardVO> list = dboardDao.fetchList(start, end, member_no);
+		model.addAttribute("list", list);
+		
+		List<DBoardVO> listcnt = dboardDao.cntList();
+		model.addAttribute("count", listcnt.size());
+		
+		List<ReplyVO> reply = dboardDao.fetchReply();
+		
+		model.addAttribute("reply", reply);
+		
+		return "dboard/list";
+		
+	}
 
 }

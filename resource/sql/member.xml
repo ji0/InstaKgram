@@ -21,7 +21,8 @@
 
 	<update id="uinfo" parameterClass="MemberVO">
 		<![CDATA[
-		update member SET name = #name#, email = #email#, password = #password#, gender = #gender# where no = #no#
+		update member SET name = #name#, password = #password#, pic_ref = #pic_ref#,
+		 gender = #gender# where no = #no#
 		]]>
 	</update>
 	
