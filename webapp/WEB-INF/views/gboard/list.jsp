@@ -9,6 +9,11 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link href="/InstaKgram/assets/css/gboard.css" rel="stylesheet"
 	type="text/css">
+	
+	 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+  
+  
 </head>
 <body>
 	<div id="container">
@@ -18,19 +23,16 @@
 		<div id="content">
 			<div id="gboard">
 				<form id="search_form" action="/InstaKgram/gboard/search" method="post">
-				<select name = "search_what"> 
+				<select name = "search_what" class="form-control" style = "width : 100px;"> 
  
-   <option value = "title" selected = "selected">제목</option>
+   <option value = "title" selected = "selected" style = "width : 30%;">제목</option>
    <option value = "content"  >내용</option>
    <option value = "member_name" >글쓴이</option>
   </select>
-
-
-					<input type="text" id="content" name="content" value=""> 
-					<input type="submit" value="찾기">
+					<input type="text" id="content" name="content" value=""  class="form-control" style = "width : 55%;"> 
+					<input type="submit" value="찾기" class="btn btn-primary"style = "width : 10%;">
 					<option>
 				</form>
-
 
 
 				<table class="tbl-ex">

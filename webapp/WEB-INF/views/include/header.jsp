@@ -6,9 +6,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" %>
 
-<h1>MySite</h1>
 <ul>
 
+	<a href="/InstaKgram/index"><img src = "/InstaKgram/assets/images/logo.PNG"  width = 170px></a>
 <c:choose>
 <c:when test = "${empty authMember}" >
 <li><a href="/InstaKgram/member/login">로그인</a>
@@ -22,5 +22,5 @@
 	
 	</c:otherwise>
 	</c:choose>
-	
 </ul>
+
