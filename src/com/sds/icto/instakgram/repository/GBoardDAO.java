@@ -32,12 +32,25 @@ public class GBoardDAO {
 		return list;
 	}
 
-	public List<GBoardVO> search(String content) throws ClassNotFoundException,
+	public List<GBoardVO> search(String search_what, String content) throws ClassNotFoundException,
 			SQLException {
 		@SuppressWarnings("unchecked")
-		List<GBoardVO> list = sqlMapClientTemplate.queryForList("gboard.search",
-				content);
-		System.out.println(list.size());
+		
+		
+		List<GBoardVO> list =null;
+		
+		if("title".equals(search_what)){
+			list = sqlMapClientTemplate.queryForList("gboard.t_search",
+					content);
+		}else if("member_name".equals(search_what)){
+			list = sqlMapClientTemplate.queryForList("gboard.m_search",
+					content);
+		}else if("content".equals(search_what)){
+			list = sqlMapClientTemplate.queryForList("gboard.c_search",
+					content);
+		}else{
+			
+		}
 
 		return list;
 	}
