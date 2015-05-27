@@ -37,6 +37,15 @@
 							</div>
 						</td>
 					</tr>
+					
+					<tr>
+						<td class="label">사진</td>
+						<td>
+							<div class="view-img">
+							<img src = "/InstaKgram/image/${list.pic_ref}" >
+							</div>
+						</td>
+					</tr>
 				</table>
 				<div class="bottom">
 					<a href="/InstaKgram/gboard/index">글목록</a>
