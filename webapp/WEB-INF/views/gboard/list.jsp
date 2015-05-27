@@ -21,6 +21,7 @@
 				
 					<input type="text" id="content" name="content" value=""> 
 					<input type="submit" value="찾기">
+					<option>
 				</form>
 
 
