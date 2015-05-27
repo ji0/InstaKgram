@@ -7,7 +7,7 @@
 		<![CDATA[
 		insert
 		  into member
-		values ( member_no_seq.nextval, #name#, #email#, #password#, #gender# )
+		values ( member_no_seq.nextval, #name#, #email#, #password#, #gender# ,#pic_ref#)
 		]]>
 	</insert>
 

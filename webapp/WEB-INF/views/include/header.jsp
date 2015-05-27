@@ -9,7 +9,6 @@
 <h1>MySite</h1>
 <ul>
 
-
 <c:choose>
 <c:when test = "${empty authMember}" >
 <li><a href="/InstaKgram/member/login">로그인</a>
