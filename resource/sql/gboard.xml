@@ -35,11 +35,27 @@
 		]]>
 	</delete>
 
-	<select id="search" resultClass = "GBoardVO" parameterClass="java.lang.String">
+	<select id="c_search" resultClass = "GBoardVO" parameterClass="java.lang.String">
 		<![CDATA[
 		select *
 		from gboard
 		where content like '%$content$%'
+		]]>
+	</select>
+	
+	<select id="t_search" resultClass = "GBoardVO" parameterClass="java.lang.String">
+		<![CDATA[
+		select *
+		from gboard
+		where title like '%$content$%'
+		]]>
+	</select>
+	
+	<select id="m_search" resultClass = "GBoardVO" parameterClass="java.lang.String">
+		<![CDATA[
+		select *
+		from gboard
+		where member_name like '%$content$%'
 		]]>
 	</select>
 	

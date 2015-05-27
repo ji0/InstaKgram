@@ -62,6 +62,10 @@ input#kwd	{
 	text-align:left
 }
 
+
+img{
+	width : 400px;
+}
 .board-form .tbl-ex td.label {
 	text-align:right;
 	font-weight:bold; 

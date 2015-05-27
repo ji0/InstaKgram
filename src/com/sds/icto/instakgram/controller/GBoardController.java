@@ -43,11 +43,11 @@ public class GBoardController {
 	}
 
 	@RequestMapping("/search")
-	public String search(Model model, @RequestParam String content) {
+	public String search(Model model, @RequestParam String search_what, @RequestParam String content) {
 
 		List<GBoardVO> list = null;
 		try {
-			list = gboardDao.search(content);
+			list = gboardDao.search(search_what, content);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}

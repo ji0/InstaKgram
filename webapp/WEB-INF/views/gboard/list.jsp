@@ -18,7 +18,14 @@
 		<div id="content">
 			<div id="gboard">
 				<form id="search_form" action="/InstaKgram/gboard/search" method="post">
-				
+				<select name = "search_what"> 
+ 
+   <option value = "title" selected = "selected">제목</option>
+   <option value = "content"  >내용</option>
+   <option value = "member_name" >글쓴이</option>
+  </select>
+
+
 					<input type="text" id="content" name="content" value=""> 
 					<input type="submit" value="찾기">
 					<option>
