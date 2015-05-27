@@ -32,10 +32,47 @@
 <c:set var="number" value="${count-(currentPage-1)*pageSize}" />
 
 
-
-
-
 <html>
+<script type="text/javascript"
+	src="/InstaKgram/assets/js/jquery/jquery-1.9.0.js"></script>
+<script>
+	$(function() {
+		$(".like").click(function() {
+			var likeCnt =  $(this).attr( "data-like-count" );
+			var no = $(this).attr("data-no");
+			
+			var postData = "likeCnt=" + likeCnt+"&no="+no;
+			$.ajax({
+				url : "/InstaKgram/dboard/like_cnt",
+				type : "post",
+				data : postData,
+				
+				
+				success : function(response) {
+					/*
+					if (response.result == false) {
+						$("#keydown-ok").show();
+						$("#keydown-no").hide();
+					} else {
+						$("#keydown-no").show();
+						$("#keydown-ok").hide();
+					}
+					if (email == "") {
+						$("#keydown-ok").hide();
+					}
+					console.log(response);
+					*/
+				},
+				error : function(jqXHR, status, e) {
+					//console.error(status + " : " + e);
+				}
+				
+			});
+
+		});
+	});
+</script>
+
 <head>
 <title>InstaKgram</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
@@ -75,11 +112,26 @@
 										<td>${vo.member_name}</td>
 										<td>${vo.reg_date}</td>
 
-
-										<td><a
+										<!--  
+										<td><a class="like" data-like-count="${vo.like_cnt }"
+												data-no="${vo.no}"
+											 
 											href="/InstaKgram/dboard/like?no=${vo.no}&like_cnt=${vo.like_cnt}">♥</a>
-											${vo.like_cnt}</td>
-
+											${vo.like_cnt}
+										</td>
+										-->
+										
+										<td><a class="like" data-like-count="${vo.like_cnt }"
+												data-no="${vo.no}"
+											href="">♥</a>
+										</td>
+										
+										<td>
+											${vo.like_cnt}
+										</td>	
+											
+										
+										
 										</tr>
 										<tr>
 											<td colspan=4><img

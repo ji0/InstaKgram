@@ -1,6 +1,8 @@
 package com.sds.icto.instakgram.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.sds.icto.instakgram.domain.DBoardVO;
 import com.sds.icto.instakgram.domain.MemberVO;
@@ -147,5 +150,49 @@ public class DBoardController {
 		return "dboard/list";
 		
 	}
+	
+	
+	@RequestMapping("/like_cnt") 
+	@ResponseBody
+	public Object checkEmail(String likeCnt,String no) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		
+		
+		int like = Integer.parseInt(likeCnt)+1;
+		likeCnt = String.valueOf(like);
+		
+		map.put("v", likeCnt);
+		map.put("n", no);
+		
+		dboardDao.incLike(map);
+		
+		System.out.println("likeCnt:"+likeCnt);
+		System.out.println("no:"+no);
+		
+		//List<MemberVO> list = dboardDao.incLike();
+		//System.out.println(list.size());
+		
+//		for(MemberVO vo:list){
+//			//중복
+//			System.out.println("asdf:"+vo.getEmail());
+//			if(email.equals(vo.getEmail())){
+//				map.put("result", true);
+//				map.put("data", "사용할 수 없습니다.");
+//				break;
+//			}
+//			//사용가능
+//			else{
+//				map.put("result", false);
+//				map.put("data", "사용할 수 있습니다.");
+//				continue;
+//			}
+//		}
+//		System.out.println(map);
+		
+		return map;
+	}
+	
 
 }
