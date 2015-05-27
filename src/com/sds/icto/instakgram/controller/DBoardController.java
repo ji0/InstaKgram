@@ -83,6 +83,7 @@ public class DBoardController {
 		vo.setMember_no(vo2.getNo());
 		vo.setMember_name(vo2.getName());
 		
+		
 		System.out.println(reply);
 		System.out.println(no);
 		System.out.println(vo2.getNo());
@@ -109,7 +110,7 @@ public class DBoardController {
 		vo.setMember_no(vo2.getNo());
 		vo.setMember_name(vo2.getName());
 		
-		/*	vo.setPassword(password);
+			/*	vo.setPassword(password);
 		vo.setMessage(message);
 		*/
 		dboardDao.insert(vo);
