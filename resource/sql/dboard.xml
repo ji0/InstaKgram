@@ -22,15 +22,29 @@
 	
 	<insert id="reply" parameterClass="ReplyVO">
 		<![CDATA[
-		insert into dboard values(reply_no_seq.nextval, #content#, #daily_no#, #member_name#, #member_no#, sysdate)
+		insert into reply values(reply_no_seq.nextval, #content#, #daily_no#, #member_no#, #member_name#, sysdate)
 		
 		]]>
 	</insert>
 
-	<select id="list" resultClass="DboardVO">
+	<select id="list" parameterClass = "java.util.Map" resultClass="DboardVO">
+		<![CDATA[
+		select * from (select A.*, rownum as rnum from (dboard)A) where rnum >= #s# and rnum <= #e#
+		]]>
+	</select>
+
+
+
+	<select id="cntlist" resultClass="DboardVO">
+		<![CDATA[
+		select * from dboard
+		]]>
+	</select>
+	
+	<select id="allreply" resultClass="ReplyVO">
 		<![CDATA[
 		select *
-		  from dboard
+		  from reply order by reg_date desc
 		]]>
 	</select>
 

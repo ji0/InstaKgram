@@ -30,11 +30,30 @@ public class DBoardController {
 	DBoardDAO dboardDao;
 
 	@RequestMapping({"/index",""})
-	public String index(Model model) {
+	public String index(Model model, @RequestParam(value = "pageNum", 
+            required = false, 
+            defaultValue = "1" )  Long pageNum ) {
 
-		List<DBoardVO> list = dboardDao.fetchList();
+		
+		if(pageNum.equals(null)){
+			pageNum = (long) 1;
+		}
+		Long start = (pageNum - 1) * 5 + 1;
+		Long end = pageNum * 5;
+
+		List<DBoardVO> list = dboardDao.fetchList(start, end);
 		model.addAttribute("list", list);
-
+		
+		
+		List<DBoardVO> listcnt = dboardDao.cntList();
+		
+		model.addAttribute("count", listcnt.size());
+		
+		List<ReplyVO> reply = dboardDao.fetchReply();
+		
+		model.addAttribute("reply", reply);
+		
+		
 		return "dboard/list";
 	}
 

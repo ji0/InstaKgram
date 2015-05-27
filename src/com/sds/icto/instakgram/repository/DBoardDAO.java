@@ -71,11 +71,38 @@ public class DBoardDAO {
 		sqlMapClientTemplate.delete("dboard.deleteAll");
 	}
 
-	public List<DBoardVO> fetchList() {
+	public List<DBoardVO> fetchList(Long start, Long end) {
 		@SuppressWarnings("unchecked")
-		List<DBoardVO> list = sqlMapClientTemplate.queryForList("dboard.list");
+		
+		
+		Map<String, Long> map = new HashMap<String, Long>();
+		map.put("s", start);
+		map.put("e", end);
+		
+		
+		List<DBoardVO> list = sqlMapClientTemplate.queryForList("dboard.list", map);
 		
 		return list;
 	}
+	
+	
+	public List<DBoardVO> cntList() {
+		@SuppressWarnings("unchecked")
+		
+		
+	
+		List<DBoardVO> list = sqlMapClientTemplate.queryForList("dboard.cntlist");
+		
+		return list;
+	}
+	
+	
+	public List<ReplyVO> fetchReply() {
+		@SuppressWarnings("unchecked")
+		List<ReplyVO> list = sqlMapClientTemplate.queryForList("dboard.allreply");
+		
+		return list;
+	}
+
 
 }
