@@ -9,6 +9,7 @@ import org.springframework.orm.ibatis.SqlMapClientTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.sds.icto.instakgram.domain.DBoardVO;
+import com.sds.icto.instakgram.domain.MemberVO;
 import com.sds.icto.instakgram.domain.ReplyVO;
 
 
@@ -123,5 +124,9 @@ public class DBoardDAO {
 		return list;
 	}
 
-
+	public void incLike(Map map){
+		
+		//sqlMapClientTemplate.update("dboard.incLike", map);
+		
+	}
 }

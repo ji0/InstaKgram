@@ -14,7 +14,7 @@
    
 	<insert id="insert" parameterClass="DBoardVO">
 		<![CDATA[
-		insert into dboard values(dboard_no_seq.nextval, '1', #content#, 0,  #member_no#, #member_name#,sysdate)
+		insert into dboard values(dboard_no_seq.nextval, '1', #content#, 0, #member_name#, #member_no#, sysdate)
 		
 		]]>
 	</insert>
@@ -66,7 +66,7 @@
 		update dboard SET like_cnt = #v# where no = #n#
 		]]>
 	</update>
-
+	
 
 	<delete id="delete" parameterClass="java.util.Map">
 		<![CDATA[

@@ -25,7 +25,6 @@
 				</form>
 
 
-
 				<table class="tbl-ex">
 					<tr>
 						<th>번호</th>
