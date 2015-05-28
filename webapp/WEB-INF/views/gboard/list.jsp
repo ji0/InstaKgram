@@ -47,7 +47,7 @@
 					</tr>
 					<c:forEach items="${list }" var="vo" varStatus="status">
 						<tr>
-							<td>${vo.no}</td>
+							<td>${status.count}</td>
 							<td><a
 								href="/InstaKgram/gboard/view?no=${vo.no}&view_cnt=${vo.view_cnt}">${vo.title}</a></td>
 							<td><a

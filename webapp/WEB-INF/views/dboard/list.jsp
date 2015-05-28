@@ -37,32 +37,32 @@
 	src="/InstaKgram/assets/js/jquery/jquery-1.9.0.js"></script>
 <script>
 	$(function() {
-		$(".like").click(function() {
-			var likeCnt =  $(this).attr( "data-like-count" );
-			var no = $(this).attr("data-no");
-			var id = "#"+no;
-			
-			var postData = "likeCnt=" + likeCnt+"&no="+no;
-			$.ajax({
-				url : "/InstaKgram/dboard/like_cnt",
-				type : "post",
-				data : postData,
-				
-				
-				success : function(response) {
-				
-					 $("#"+no+".likeUp").text(response.data);
-					 $("#"+no+".like").attr( "data-like-count", response.data );
-					
-				},
-				error : function(jqXHR, status, e) {
-					
-				}
-				
-				
-			});
+		$(".like").click(
+				function() {
+					var likeCnt = $(this).attr("data-like-count");
+					var no = $(this).attr("data-no");
+					var id = "#" + no;
 
-		});
+					var postData = "likeCnt=" + likeCnt + "&no=" + no;
+					$.ajax({
+						url : "/InstaKgram/dboard/like_cnt",
+						type : "post",
+						data : postData,
+
+						success : function(response) {
+
+							$("#" + no + ".likeUp").text(response.data);
+							$("#" + no + ".like").attr("data-like-count",
+									response.data);
+
+						},
+						error : function(jqXHR, status, e) {
+
+						}
+
+					});
+
+				});
 	});
 </script>
 
@@ -71,6 +71,9 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link href="/InstaKgram/assets/css/dboard.css" rel="stylesheet"
 	type="text/css">
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
 </head>
 <body>
 	<div id="container">
@@ -78,75 +81,76 @@
 			<jsp:include page="/WEB-INF/views/include/header.jsp" flush="false" />
 		</div>
 		<div id="content">
+		
 			<div id="dboard">
-				<form action="/InstaKgram/dboard/insert" method="post" enctype="multipart/form-data">
+				<c:if test="${ !empty authMember }">
+				<form action="/InstaKgram/dboard/insert" method="post"
+					enctype="multipart/form-data">
 
-					<table>
+					<table class="table table-hover">
 						<tr>
 							<td colspan=4><img class="myPicture" id="dboard"
-								src="/InstaKgram/image/${authMember.pic_ref}">
-							</td>
+								src="/InstaKgram/image/${authMember.pic_ref}"></td>
 						</tr>
 						<tr>
-							<td colspan=4><textarea name=content id="content"></textarea></td>
+							<td colspan=4><textarea name=content id="content"
+									class="form-control"></textarea></td>
 						</tr>
 						<tr>
-							<td colspan=4 align=right>
-								<input type="hidden" name="deptNo" value="10">
-								<input type="file" id ="file" name="file" value="사진등록하기"><br><br>	
-								<input type="submit" VALUE=" 확인 ">
-							</td>
+							<td colspan=4 align=right><input type="hidden" name="deptNo"
+								value="10"> <input type="file" id="file" name="file"
+								value="사진등록하기"><br>
+							<br> <input type="submit" VALUE=" 확인 "
+								class="btn btn-primary"></td>
 						</tr>
 					</table>
-					
+
 				</form>
+				</c:if>
 				<ul>
 					<li><c:forEach items="${list }" var="vo" varStatus="status">
 							<div id="dboard">
 								<form action="/InstaKgram/dboard/reply" method="post">
 
-									<table>
-										<td>[${vo.no}] </td>
+									<table class="table table-hover">
+										<td>[${status.count}]</td>
 										<td>${vo.member_name}</td>
 										<td>${vo.reg_date}</td>
 
-										
-										<td>	
-											<input type="button" class="like" id="${vo.no }"
-												data-like-count="${vo.like_cnt }"
-												data-no="${vo.no}" value="좋아요">
-										</td>
-										
-										<td class="likeUp" id="${vo.no }">
-											${vo.like_cnt}
-										</td>	
-											
-										
-										
+
+										<td><input type="button" class="like" id="${vo.no }"
+											data-like-count="${vo.like_cnt }" data-no="${vo.no}"
+											value="좋아요"></td>
+
+										<td class="likeUp" id="${vo.no }">${vo.like_cnt}</td>
+
+
+
 										</tr>
 										<tr>
-											<td colspan=4><img class="dboardPicture" id="dboard"
-												src="/InstaKgram/image/${vo.pic_ref}">
-											</td>
+											<td colspan=5><img class="dboardPicture" id="dboard"
+												src="/InstaKgram/image/${vo.pic_ref}"></td>
 										</tr>
 										<tr>
-											<td colspan=3>${fn:replace(vo.content, newLineChar, "<br>"
+											<td colspan=4>${fn:replace(vo.content, newLineChar, "<br>"
 										) }</td>
 
 
 
 											<td><c:if test="${authMember.no == vo.member_no}">
 
-													<a href="/InstaKgram/dboard/delete?no=${vo.no}">삭제</a>
+													<a href="/InstaKgram/dboard/delete?no=${vo.no}"><img
+														src="/InstaKgram/assets/images/recycle.png"></a>
 
 												</c:if></td>
 
 										</tr>
 										<tr>
 											<input type='hidden' name='no' value="${vo.no}">
-											<td colspan=3><input type='text' name='reply' id='reply'
-												value=""></td>
-											<td><input type="submit" VALUE=" 댓글 "></td>
+											<td colspan=4><input type='text' name='reply' id='reply'
+												value="" class="form-control"></td>
+											<td><input type="submit" VALUE=" 댓글 "
+												class="btn btn-primary"></td>
 										</tr>
 
 
@@ -196,25 +200,28 @@
 
 						<fmt:formatNumber var="endPageC" value="${pageCount}" pattern="0" />
 					</c:if>
-					<c:if test="${startPage > 5 }">
-						<a href="/InstaKgram/dboard?pageNum=${startPage - 5}">[이전]</a>
-					</c:if>
-
-					<c:forEach begin="${startPage }" end="${endPage }" step="1" var="i">
-						<c:if test="${valueC >= i}">
-							<a href="/InstaKgram/dboard?pageNum=${i}">[${i}]</a>
+						<ul class="pagination">
+						<c:if test="${startPage > 5 }">
+						<li>	<a href="/InstaKgram/dboard?pageNum=${startPage - 5}">Previous</a></li>
 						</c:if>
-					</c:forEach>
+				
+				
+						<c:forEach begin="${startPage }" end="${endPage }" step="1"
+							var="i">
+							<c:if test="${valueC >= i}">
+								<li><a href="/InstaKgram/dboard?pageNum=${i}">${i}</a></li>
+							</c:if>
+						</c:forEach>
+					
 
-
-					<c:if test="${endPage < valueC }">
-						<a href="/InstaKgram/dboard?pageNum=${startPage + 5}">[다음]</a>
-					</c:if>
+					
+						<c:if test="${endPage < valueC }">
+							<li>	<a href="/InstaKgram/dboard?pageNum=${startPage + 5}">Next</a></li>
+						</c:if>
+						</ul>
 				</c:if>
 
 
-				<%--<%for (int i = startPage ; i <= endPage ; i++) {  %>
-        <a>[<%= i %>]</a>--%>
 			</div>
 
 

@@ -6,8 +6,10 @@
 #dboard form, 
 #dboard table	{ width:100% }
 
+#paging {text-align : center;}
+
 #dboard table,	
-#dboard table td { border:1px solid #333 }
+#dboard table td {  }
 #dboard table td { padding:5px }
 
 #dboard ul		{ width:100%; margin-top:20px }
