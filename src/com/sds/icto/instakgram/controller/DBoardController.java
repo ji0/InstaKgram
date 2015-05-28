@@ -166,6 +166,7 @@ public class DBoardController {
 		map.put("v", likeCnt);
 		map.put("n", no);
 		
+		//다오 생성하기
 		dboardDao.incLike(map);
 		
 		System.out.println("likeCnt:"+likeCnt);
@@ -174,21 +175,13 @@ public class DBoardController {
 		//List<MemberVO> list = dboardDao.incLike();
 		//System.out.println(list.size());
 		
-//		for(MemberVO vo:list){
-//			//중복
-//			System.out.println("asdf:"+vo.getEmail());
-//			if(email.equals(vo.getEmail())){
-//				map.put("result", true);
-//				map.put("data", "사용할 수 없습니다.");
-//				break;
-//			}
-//			//사용가능
-//			else{
-//				map.put("result", false);
-//				map.put("data", "사용할 수 있습니다.");
-//				continue;
-//			}
-//		}
+
+			//중복
+			//System.out.println("asdf:"+vo.getEmail());
+			
+				map.put("result", true);
+				map.put("data", likeCnt);
+				
 //		System.out.println(map);
 		
 		return map;

@@ -40,6 +40,7 @@
 		$(".like").click(function() {
 			var likeCnt =  $(this).attr( "data-like-count" );
 			var no = $(this).attr("data-no");
+			var id = "#"+no;
 			
 			var postData = "likeCnt=" + likeCnt+"&no="+no;
 			$.ajax({
@@ -49,23 +50,15 @@
 				
 				
 				success : function(response) {
-					/*
-					if (response.result == false) {
-						$("#keydown-ok").show();
-						$("#keydown-no").hide();
-					} else {
-						$("#keydown-no").show();
-						$("#keydown-ok").hide();
-					}
-					if (email == "") {
-						$("#keydown-ok").hide();
-					}
-					console.log(response);
-					*/
+				
+					 $("#"+no+".likeUp").text(response.data);
+					 $("#"+no+".like").attr( "data-like-count", response.data );
+					
 				},
 				error : function(jqXHR, status, e) {
-					//console.error(status + " : " + e);
+					
 				}
+				
 				
 			});
 
@@ -121,12 +114,19 @@
 										</td>
 										-->
 										
-										<td><a class="like" data-like-count="${vo.like_cnt }"
+										<td>	
+											<!--  
+											<a class="like" data-like-count="${vo.like_cnt }"
 												data-no="${vo.no}"
 											href="">♥</a>
+											
+											-->
+											<input type="button" class="like" id="${vo.no }"
+												data-like-count="${vo.like_cnt }"
+												data-no="${vo.no}" value="좋아요">
 										</td>
 										
-										<td>
+										<td class="likeUp" id="${vo.no }">
 											${vo.like_cnt}
 										</td>	
 											

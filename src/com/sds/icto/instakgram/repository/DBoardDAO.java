@@ -126,7 +126,7 @@ public class DBoardDAO {
 
 	public void incLike(Map map){
 		
-		//sqlMapClientTemplate.update("dboard.incLike", map);
+		sqlMapClientTemplate.update("dboard.pluslike", map);
 		
 	}
 }
