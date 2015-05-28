@@ -10,8 +10,11 @@
 <head>
 <title>InstaKgram</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  
 <link href="/InstaKgram/assets/css/user.css" rel="stylesheet"
 	type="text/css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	
 </head>
 <body>
 	<div id="container">
@@ -24,16 +27,16 @@
 				<form id="login-form" name="loginform" method="post" action="">
 					 <label
 						class="block-label" for="email">이메일</label> <input id="email"
-						name="email" type="text" value=""> <label
+						name="email" type="text" value=""  class="form-control">  <label
 						class="block-label">패스워드</label> <input name="password"
-						type="password" value="">
+						type="password" value=""  class="form-control">
 
 
 					<c:if test="${param.result == 'fail'}">
 						<p>로그인이 실패 했습니다.</p>
 					</c:if>
 
-					<input type="submit" value="로그인">
+					<input type="submit" value="로그인"  class="btn btn-info">
 				</form>
 			</div>
 		</div>

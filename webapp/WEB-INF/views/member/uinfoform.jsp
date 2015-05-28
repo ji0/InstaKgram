@@ -14,6 +14,8 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link href="/InstaKgram/assets/css/user.css" rel="stylesheet"
 	type="text/css">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	
 </head>
 <body>
 	<div id="container">
@@ -26,12 +28,12 @@
 
 				<form id="uinfo-form" name="uinfoForm" method="post"
 					action="/InstaKgram/member/uinfo" enctype="multipart/form-data">
-					<input type="hidden" name="no" value="${authMember.no}"> <label
+					<input type="hidden" name="no" value="${authMember.no}" > <label
 						class="block-label" for="name">이름</label> <input id="name"
-						name="name" type="text" value="${authMember.name }">
+						name="name" type="text" value="${authMember.name }"  class="form-control">
 						
 						<label class="block-label">패스워드</label>
-					<input name="password" type="password" value="">
+					<input name="password" type="password" value=""  class="form-control">
 
 					<fieldset>
 						<legend>성별</legend>
@@ -62,7 +64,7 @@
 					</fieldset>
 					
 
-					<input type="submit" value="수정하기">
+					<input type="submit" value="수정하기"  class="btn btn-info">
 
 				</form>
 			</div>

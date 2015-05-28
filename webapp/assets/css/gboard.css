@@ -39,6 +39,14 @@ input#kwd	{
 	border-bottom:2px solid #333;
 }
 
+
+.view-img img	{
+	width:500px;
+	margin:10px auto; 
+	border-collapse:collapse;
+}
+
+
 .tbl-ex th, 
 .tbl-ex td	{ 
 	padding:8px;
@@ -59,14 +67,9 @@ input#kwd	{
 }
 
 .board-form .tbl-ex td {
-	text-align:left
+	text-align:center
 }
 
-
-.board-form .tbl-ex td.label {
-	text-align:right;
-	font-weight:bold; 
-}
 
 .board-form .tbl-ex input[ name='title' ] {
 	width: 480px;

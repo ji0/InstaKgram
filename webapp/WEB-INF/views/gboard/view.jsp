@@ -12,6 +12,8 @@
 <title>mysite</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link href="/InstaKgram/assets/css/gboard.css" rel="stylesheet" type="text/css">
+	 <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
 </head>
 <body>
 	<div id="container">
@@ -20,17 +22,15 @@
 		</div>
 		<div id="content">
 			<div id="gboard" class="board-form">
-				<table class="tbl-ex">
+				<table class="table table-hover" id = "table2">
+				
 					<tr>
-						<th colspan="2">글보기</th>
+					
+						<th>	
+							${list.title}</th>
 					</tr>
 					<tr>
-						<td class="label">제목</td>
-						<td>	
-							${list.title}</td>
-					</tr>
-					<tr>
-						<td class="label">내용</td>
+					
 						<td>
 							<div class="view-content">
 							${fn:replace(list.content, newLineChar, "<br>" ) }
@@ -39,20 +39,23 @@
 					</tr>
 					
 					<tr>
-						<td class="label">사진</td>
+					
 						<td>
 							<div class="view-img">
+								
+							
 							<img src = "/InstaKgram/image/${list.pic_ref}" >
+							
 							</div>
 						</td>
 					</tr>
 				</table>
 				<div class="bottom">
-					<a href="/InstaKgram/gboard/index">글목록</a>
+					<a href="/InstaKgram/gboard/index"  class="btn btn-default">글목록</a>
 					
 					<c:if test="${authMember.name == list.member_name}">
 					
-					<a href="/InstaKgram/gboard/modify?no=${list.no}">글수정</a>
+					<a href="/InstaKgram/gboard/modify?no=${list.no}"  class="btn btn-default">글수정</a>
 					</c:if>
 					
 				</div>

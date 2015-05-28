@@ -22,7 +22,7 @@
 
 	<select id="list" resultClass="GBoardVO">
 		<![CDATA[
-		select * from gboard
+		select * from gboard order by reg_date desc
 		]]>
 	</select>
 

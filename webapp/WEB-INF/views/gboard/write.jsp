@@ -16,26 +16,26 @@
 			<div id="board">
 				<form class="board-form" method="post" action="/InstaKgram/gboard/write" enctype="multipart/form-data">
 					<input type = "hidden" name = "a" value="write">
-					<table class="tbl-ex">
+					<table class="table table-hover" >
 						<tr>
 							<th colspan="2">글쓰기</th>
 						</tr>
 						<tr>
-							<td class="label">제목</td>
-							<td><input type="text" name="title" value=""></td>
+							<td>제목</td>
+							<td><input type="text" name="title" value=""  class="form-control" ></td>
 						</tr>
 						<tr>
-							<td class="label">내용</td>
+							<td>내용</td>
 							<td>
-								<textarea id="content" name="content"></textarea>
+								<textarea id="content" name="content" rows = "10" class="form-control"></textarea>
 							</td>
 						</tr>
 					</table>
 					<div class="bottom">
 						<input type="hidden" name="deptNo" value="10">
 						<input type="file" id ="file" name="file" value="사진등록하기"><br><br>
-						<a href="/InstaKgram/gboard/index">취소</a>
-						<input type="submit" value="등록">
+						<a href="/InstaKgram/gboard/index"  class="btn btn-default">취소</a>
+						<input type="submit" value="등록"  class="btn btn-default">
 					</div>
 				</form>				
 			</div>

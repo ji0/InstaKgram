@@ -23,9 +23,9 @@
 		<div id="content">
 			<div id="gboard">
 				<form id="search_form" action="/InstaKgram/gboard/search" method="post">
-				<select name = "search_what" class="form-control" style = "width : 100px;"> 
+				<select name = "search_what" class="form-control" style = "width : 30%;"> 
  
-   <option value = "title" selected = "selected" style = "width : 30%;">제목</option>
+   <option value = "title" selected = "selected">제목</option>
    <option value = "content"  >내용</option>
    <option value = "member_name" >글쓴이</option>
   </select>
@@ -54,7 +54,10 @@
 								href="/InstaKgram/dboard/searchDBoard?member_no=${vo.member_no}">${vo.member_name}</a></td>
 							<td>${vo.view_cnt}</td>
 							<td>${vo.reg_date}</td>
-							<td><a href="/InstaKgram/gboard/delete?no=${vo.no}" class="del">삭제</a></td>
+												<c:if test="${authMember.name == vo.member_name}">
+							
+							<td><a href="/InstaKgram/gboard/delete?no=${vo.no}" class="del"><img src = "/InstaKgram/assets/images/recycle.png" ></a></td>
+					</c:if>
 						</tr>
 
 					</c:forEach>
@@ -64,7 +67,7 @@
 			<c:if test="${ !empty authMember }">
 			
 				<div class="bottom">
-					<a href="/InstaKgram/gboard/write" id="new-book">글쓰기</a>
+					<a href="/InstaKgram/gboard/write" id="new-book"  class="btn btn-default">글쓰기</a>
 				</div>
 				
 				</c:if>

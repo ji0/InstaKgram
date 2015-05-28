@@ -6,14 +6,14 @@ body			{ font:0.75em "맑은 고딕", 돋움, 굴림; text-align:center }
 ul, ol			{ list-style-type: none }
 
 /* layout */
-div#container	{ text-align:left; width:900px; margin:0 auto; background-color:#EEE }
-div#content		{ float:right; width:730px; background-color:#fff }
-div#navigation	{ float:left; width:170px;  }
+div#container	{ text-align:left; width:900px; margin:0 auto; background-color:#D4F4FA }
+div#content		{ float:right; width:730px; background-color:#ECFFFF }
+div#navigation	{ float:left; width:170px;}
 div#footer		{ clear:both; width:100% }
 
 /* header */
 
-div#header			{ height:80px; line-height:70px; margin:0; padding-left:10px; color:#79B30B }
+div#header			{ height:140px; line-height:70px; margin:0; padding-top:40px; padding-left:10px; color:#79B30B }
 
 div#header	h1			{ height:70px; line-height:70px; margin:0; padding-left:10px; color:#79B30B }
 div#header	ul			{ height:20px; margin:0 20px 10px 0 } 
@@ -24,8 +24,8 @@ div#header	li a 		{ display:block; margin-left:10px }
 
 /* navigation */
 div#navigation ul			{ width:168px; margin-top:1px }
-div#navigation li			{ width:168px; background-color:#E9E9E9; border:1px solid #DADADA; margin-top:-1px }
-div#navigation li a			{ display:block; color:#4F4F4F; width:148px; font-weight:bold; padding:5px 10px; font-size:1.1em }
+div#navigation li			{ width:168px; background-color:#5CD1E5; border:1px solid #DADADA; margin-top:-1px }
+div#navigation li a			{ display:block; color:#4F4F4F; width:168px; font-weight:bold; padding:5px 10px; font-size:1.1em }
 div#navigation li.selected	{ background:#E0E0E0 }
 div#navigation li a:link	{ color:#4F4F4F; text-decoration:none; }
 div#navigation li a:hover	{ color:#4F4F4F; text-decoration:none; }
