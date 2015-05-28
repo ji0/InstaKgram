@@ -149,8 +149,13 @@
 											<input type='hidden' name='no' value="${vo.no}">
 											<td colspan=4><input type='text' name='reply' id='reply'
 												value="" class="form-control"></td>
-											<td><input type="submit" VALUE=" 댓글 "
-												class="btn btn-primary"></td>
+											<td>
+											
+											
+											<c:if test="${!empty authMember.no}">
+											<input type="submit" VALUE=" 댓글 "
+												class="btn btn-primary">
+												</c:if></td>
 										</tr>
 
 
