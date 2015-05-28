@@ -7,7 +7,7 @@ ul, ol			{ list-style-type: none }
 
 /* layout */
 div#container	{ text-align:left; width:900px; margin:0 auto; background-color:#D4F4FA }
-div#content		{ float:right; width:730px; background-color:#ECFFFF }
+div#content		{ float:right; width:730px; background-color:#ECFFFF; text-align:center; }
 div#navigation	{ float:left; width:170px;}
 div#footer		{ clear:both; width:100% }
 
