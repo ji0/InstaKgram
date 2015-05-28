@@ -26,7 +26,6 @@ public class MemberService {
 
 	public void uinfoUser(MemberVO vo) {
 		memberDao.update(vo);
-
 	}
 
 	public List<MemberVO> mailList() {

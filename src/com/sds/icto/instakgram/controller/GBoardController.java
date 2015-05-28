@@ -20,23 +20,22 @@ import org.springframework.web.multipart.MultipartFile;
 import com.sds.icto.instakgram.domain.GBoardVO;
 import com.sds.icto.instakgram.domain.MemberVO;
 import com.sds.icto.instakgram.repository.GBoardDAO;
+import com.sds.icto.instakgram.service.GBoardService;
+import com.sds.icto.instakgram.service.MemberService;
 
 @Controller
 @RequestMapping("/gboard")
 public class GBoardController {
 
 	@Autowired
-	GBoardDAO gboardDao;
+	GBoardService GBoardService;
 
 	@RequestMapping("/index")
 	public String index(Model model) {
 
-		List<GBoardVO> list = null;
-		try {
-			list = gboardDao.fetchList();
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
+	
+		List<GBoardVO> list = GBoardService.GBList();
+	
 		model.addAttribute("list", list);
 
 		return "gboard/list";
@@ -45,19 +44,14 @@ public class GBoardController {
 	@RequestMapping("/search")
 	public String search(Model model, @RequestParam String search_what, @RequestParam String content) {
 
-		List<GBoardVO> list = null;
-		try {
-			list = gboardDao.search(search_what, content);
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
+		List<GBoardVO> list = GBoardService.GBSearch(search_what, content);
+		
 		model.addAttribute("list", list);
 
 		return "gboard/list";
 	}
 
 	@RequestMapping(value = "/write", method = RequestMethod.GET)
-	// 링크??겟방??
 	public String write() {
 
 		return "gboard/write";
@@ -98,7 +92,7 @@ public class GBoardController {
 		vo.setMember_name(vo2.getName());
 		vo.setPic_ref(saveFileName);
 
-		gboardDao.insert(vo);
+		GBoardService.GBinsert(vo);
 
 		return "redirect:/gboard/index";
 
@@ -127,8 +121,7 @@ public class GBoardController {
 	public String view(Model model, @RequestParam Long no,
 			@RequestParam Long view_cnt) {
 
-		GBoardVO list = null;
-		list = gboardDao.view(no, view_cnt);
+		GBoardVO list =  GBoardService.GBView(no, view_cnt);
 
 		model.addAttribute("list", list);
 
@@ -139,8 +132,10 @@ public class GBoardController {
 	@RequestMapping(value = "/modify", method = RequestMethod.GET)
 	// 링크??겟방??
 	public String modify(Model model, @RequestParam Long no) {
-		GBoardVO list = null;
-		list = gboardDao.modify(no);
+	
+		GBoardVO list =  GBoardService.GBmodify(no);
+
+		
 
 		model.addAttribute("list", list);
 
@@ -155,7 +150,8 @@ public class GBoardController {
 		vo.setNo(no);
 		vo.setTitle(title);
 		vo.setContent(content);
-		gboardDao.update(vo);
+		
+		GBoardService.GBupdate(vo);
 
 		return "redirect:/gboard/index";
 
@@ -164,43 +160,10 @@ public class GBoardController {
 	@RequestMapping("/delete")
 	public String delete(@RequestParam Long no) {
 
-		gboardDao.delete(no);
-
+		GBoardService.GBdelete(no);
 		return "redirect:/gboard/index";
 
 	}
 
-	/*
-	 * 
-	 * @RequestMapping(value = "/insert", method = RequestMethod.POST) public
-	 * String insert(
-	 * 
-	 * @RequestParam String name,
-	 * 
-	 * @RequestParam String password,
-	 * 
-	 * @RequestParam String message) {
-	 * 
-	 * BoardVO vo = new BoardVO(); vo.setName(name); vo.setPassword(password);
-	 * vo.setMessage(message);
-	 * 
-	 * boardDao.insert(vo);
-	 * 
-	 * return "redirect:/board/index"; }
-	 * 
-	 * @RequestMapping(value = "/delete", method = RequestMethod.GET) //
-	 * 링크??겟방?? public String delete(@RequestParam Long no) {
-	 * 
-	 * return "guestbook/deleteform"; }
-	 * 
-	 * @RequestMapping(value = "/delete", method = RequestMethod.POST) public
-	 * String delete(@RequestParam Long no, @RequestParam String password) {
-	 * 
-	 * //boardDao.delete(no, password);
-	 * 
-	 * return "redirect:/guestbook/index";
-	 * 
-	 * }
-	 */
 
 }
