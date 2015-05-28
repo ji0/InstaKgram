@@ -110,22 +110,8 @@
 										<td>${vo.member_name}</td>
 										<td>${vo.reg_date}</td>
 
-										<!--  
-										<td><a class="like" data-like-count="${vo.like_cnt }"
-												data-no="${vo.no}"
-											 
-											href="/InstaKgram/dboard/like?no=${vo.no}&like_cnt=${vo.like_cnt}">♥</a>
-											${vo.like_cnt}
-										</td>
-										-->
 										
 										<td>	
-											<!--  
-											<a class="like" data-like-count="${vo.like_cnt }"
-												data-no="${vo.no}"
-											href="">♥</a>
-											
-											-->
 											<input type="button" class="like" id="${vo.no }"
 												data-like-count="${vo.like_cnt }"
 												data-no="${vo.no}" value="좋아요">

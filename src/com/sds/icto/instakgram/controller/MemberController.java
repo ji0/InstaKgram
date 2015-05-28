@@ -166,7 +166,9 @@ public class MemberController {
 		Map<String, Object> map = new HashMap<String, Object>();
 
 		List<MemberVO> list = memberService.mailList();
-
+		map.put("result", false);
+		map.put("data", "사용할 수 있습니다.");
+		
 		for (MemberVO vo : list) {
 			// 중복
 			System.out.println("asdf:" + vo.getEmail());
