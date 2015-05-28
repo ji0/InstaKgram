@@ -83,8 +83,8 @@
 
 					<table>
 						<tr>
-							<td colspan=4><img
-								src="http://tv03.search.naver.net/thm?size=120x150&quality=9&q=http://sstatic.naver.net/people/portrait/201404/20140403155326747-6772174.jpg">
+							<td colspan=4><img class="myPicture" id="dboard"
+								src="/InstaKgram/image/${authMember.pic_ref}">
 							</td>
 						</tr>
 						<tr>
@@ -106,7 +106,7 @@
 								<form action="/InstaKgram/dboard/reply" method="post">
 
 									<table>
-										<td>[${vo.no}]</td>
+										<td>[${vo.no}] </td>
 										<td>${vo.member_name}</td>
 										<td>${vo.reg_date}</td>
 
@@ -139,8 +139,8 @@
 										
 										</tr>
 										<tr>
-											<td colspan=4><img
-												src="http://tv03.search.naver.net/thm?size=120x150&quality=9&q=http://sstatic.naver.net/people/portrait/201404/20140403155326747-6772174.jpg">
+											<td colspan=4><img class="dboardPicture" id="dboard"
+												src="/InstaKgram/image/${vo.pic_ref}">
 											</td>
 										</tr>
 										<tr>

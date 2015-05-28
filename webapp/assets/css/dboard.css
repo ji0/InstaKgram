@@ -22,6 +22,17 @@
 	border-radius: 10px;
 	margin:50px auto;
 }
+
+#dboard.myPicture{
+	width:150px;
+	height: 150px;
+}
+
+#dboard.dboardPicture{
+	width:400px;
+	height: 300px;
+}
+
 #dboard.delete-form a	{ display:block; margin:20px auto; width:110px }
 
 #dboard.delete-message p	{ padding:100px; height:50px; text-align:center }
