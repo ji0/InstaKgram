@@ -1,7 +1,13 @@
 @CHARSET "UTF-8";
 @import "instakgram.css";
 
-#site-introduction				{ padding:20px;	width:540px; }
-#site-introduction img#profile	{ display:block; float:left }
-#site-introduction h2		   	{ float:left; width:320px; margin:50px 0 0 20px }
+#site-introduction				{ padding:20px;	width:700px; }
+#site-introduction img#mainPicture	{
+	width: 300px; 
+	height: 400px; 
+	margin:50px 0 0 50px 
+}
+#site-introduction h1		   	{ float:left; margin:50px 0 0 150px }
+#site-introduction h3		   	{ float:left; width:320px; margin:0 0 0 200px }
+#site-introduction h4		   	{ float:left; width:320px; margin:0 0 10px 200px }
 #site-introduction p			{ clear:both; font-size:1.1em; padding:20px; line-height:1.5em }

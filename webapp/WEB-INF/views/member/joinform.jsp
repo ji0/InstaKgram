@@ -88,9 +88,14 @@
 						class="block-label" for="email">이메일</label> <input id="email"
 						name="email" type="text" value="" class="form-control"> <img id="email-checked"
 						src="/InstaKgram/assets/images/check.png"
-						style="width: 20px; display: none"> <label id="keydown-ok"
-						style="display: none">사용가능</label> <label id="keydown-no"
-						style="display: none">사용불가</label> <label class="block-label">패스워드</label>
+						style="width: 20px; display: none"> 
+						
+						<label id="keydown-ok"
+						style="display: none">사용가능</label> 
+						<label id="keydown-no"
+						style="display: none">사용불가</label>
+						
+						<label class="block-label">패스워드</label>
 					<input name="password" type="password" value="" class="form-control"> 
 					
 					<legend>성별</legend>

@@ -21,15 +21,16 @@
 		<div id="wrapper">
 			<div id="content">
 				<div id="site-introduction">
-					<img id="profile" src="/InstaKgram/assets/images/main.jpg" style = "width : 200px">
+					
+					 <h1>최고의 성형은 다이어트!!</h1>
+					<img src="/InstaKgram/assets/images/main.jpg" id="mainPicture">
+					
 					<p>
-					<br>
 					
 					<h4>인스타키로그램에서</h4>
 
 					<h3>목표를 공유하고</h3>
 					<h3>하루하루를 기록하세요!</h3>
-
 
 					</p>
 				</div>
