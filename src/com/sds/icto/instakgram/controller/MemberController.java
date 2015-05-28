@@ -143,7 +143,6 @@ public class MemberController {
 	public String login(@ModelAttribute MemberVO vo, HttpSession session) {
 
 		MemberVO memberVO = memberService.authUser(vo);
-		System.out.println("한성현 바보");
 		if (memberVO == null) {
 			return "redirect:/member/login?result=fail";
 		}
