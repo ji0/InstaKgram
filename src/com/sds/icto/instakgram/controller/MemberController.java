@@ -29,9 +29,7 @@ public class MemberController {
 
 	@Autowired
 	MemberService memberService;
-	
-	@Autowired
-	MemberDAO memberDao;
+
 
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	// 링크??겟방??
@@ -39,47 +37,46 @@ public class MemberController {
 		return "member/joinform";
 	}
 
-	
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
-	public String join(@ModelAttribute MemberVO vo, @RequestParam Long deptNo, @RequestParam("file")MultipartFile file) {
-		
-        String fileOriginalName = file.getOriginalFilename();
-        String extName = fileOriginalName.substring( fileOriginalName.lastIndexOf(".") + 1, fileOriginalName.length() );
-        String fileName = file.getName();
-        Long size = file.getSize();
-        
-        
-        String saveFileName = "";
-        Calendar calendar = Calendar.getInstance();
-        
-        saveFileName += calendar.get( Calendar.YEAR );
-        saveFileName += calendar.get( Calendar.MONTH );
-        saveFileName += calendar.get( Calendar.DATE );
-        saveFileName += calendar.get( Calendar.HOUR );
-        saveFileName += calendar.get( Calendar.MINUTE );
-        saveFileName += calendar.get( Calendar.SECOND );
-        saveFileName += calendar.get( Calendar.MILLISECOND );
-        saveFileName += ( "." + extName );
+	public String join(@ModelAttribute MemberVO vo, @RequestParam Long deptNo,
+			@RequestParam("file") MultipartFile file) {
 
-        writeFile( file, "c:\\uploads", saveFileName );
-		
-        //vo에 사진name등록
-        vo.setPic_ref(saveFileName);
-        //회원등록
-        memberService.joinUser(vo);
-        
+		String fileOriginalName = file.getOriginalFilename();
+		String extName = fileOriginalName.substring(
+				fileOriginalName.lastIndexOf(".") + 1,
+				fileOriginalName.length());
+		String fileName = file.getName();
+		Long size = file.getSize();
+
+		String saveFileName = "";
+		Calendar calendar = Calendar.getInstance();
+
+		saveFileName += calendar.get(Calendar.YEAR);
+		saveFileName += calendar.get(Calendar.MONTH);
+		saveFileName += calendar.get(Calendar.DATE);
+		saveFileName += calendar.get(Calendar.HOUR);
+		saveFileName += calendar.get(Calendar.MINUTE);
+		saveFileName += calendar.get(Calendar.SECOND);
+		saveFileName += calendar.get(Calendar.MILLISECOND);
+		saveFileName += ("." + extName);
+
+		writeFile(file, "c:\\uploads", saveFileName);
+
+		// vo에 사진name등록
+		vo.setPic_ref(saveFileName);
+		// 회원등록
+		memberService.joinUser(vo);
+
 		return "redirect:/member/login";
 	}
 
-	
-	
-	private void writeFile( MultipartFile file, String path, String fileName ) {
+	private void writeFile(MultipartFile file, String path, String fileName) {
 		FileOutputStream fos = null;
 		try {
 			byte fileData[] = file.getBytes();
-			fos = new FileOutputStream( path + "\\" + fileName );
+			fos = new FileOutputStream(path + "\\" + fileName);
 			fos.write(fileData);
-		} catch (Exception e) {	
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			if (fos != null) {
@@ -89,8 +86,8 @@ public class MemberController {
 				}
 			}
 		}
-	}	
-	
+	}
+
 	@RequestMapping(value = "/uinfo", method = RequestMethod.GET)
 	// 링크??겟방??
 	public String uinfoForm() {
@@ -99,40 +96,40 @@ public class MemberController {
 
 	@RequestMapping(value = "/uinfo", method = RequestMethod.POST)
 	public String uinfo(@RequestParam String name, @RequestParam String email,
-			@RequestParam String password, @RequestParam String gender, @RequestParam Long no,
-			@RequestParam Long deptNo, @RequestParam("file")MultipartFile file,
-			HttpSession session
-			) {
+			@RequestParam String password, @RequestParam String gender,
+			@RequestParam Long no, @RequestParam Long deptNo,
+			@RequestParam("file") MultipartFile file, HttpSession session) {
 
 		String fileOriginalName = file.getOriginalFilename();
-        String extName = fileOriginalName.substring( fileOriginalName.lastIndexOf(".") + 1, fileOriginalName.length() );
-        String fileName = file.getName();
-        Long size = file.getSize();
-        
-        
-        String saveFileName = "";
-        Calendar calendar = Calendar.getInstance();
-        
-        saveFileName += calendar.get( Calendar.YEAR );
-        saveFileName += calendar.get( Calendar.MONTH );
-        saveFileName += calendar.get( Calendar.DATE );
-        saveFileName += calendar.get( Calendar.HOUR );
-        saveFileName += calendar.get( Calendar.MINUTE );
-        saveFileName += calendar.get( Calendar.SECOND );
-        saveFileName += calendar.get( Calendar.MILLISECOND );
-        saveFileName += ( "." + extName );
+		String extName = fileOriginalName.substring(
+				fileOriginalName.lastIndexOf(".") + 1,
+				fileOriginalName.length());
+		String fileName = file.getName();
+		Long size = file.getSize();
 
-        writeFile( file, "c:\\uploads", saveFileName );
-		
+		String saveFileName = "";
+		Calendar calendar = Calendar.getInstance();
+
+		saveFileName += calendar.get(Calendar.YEAR);
+		saveFileName += calendar.get(Calendar.MONTH);
+		saveFileName += calendar.get(Calendar.DATE);
+		saveFileName += calendar.get(Calendar.HOUR);
+		saveFileName += calendar.get(Calendar.MINUTE);
+		saveFileName += calendar.get(Calendar.SECOND);
+		saveFileName += calendar.get(Calendar.MILLISECOND);
+		saveFileName += ("." + extName);
+
+		writeFile(file, "c:\\uploads", saveFileName);
+
 		MemberVO vo = new MemberVO();
 		vo.setName(name);
 		vo.setPassword(password);
 		vo.setGender(gender);
 		vo.setNo(no);
 		vo.setPic_ref(saveFileName);
-		
-		memberDao.update(vo);
-		session.setAttribute("authMember", memberDao.getMember(vo));
+
+		memberService.uinfoUser(vo);
+		session.setAttribute("authMember", memberService.authUser(vo));
 		return "redirect:/index";
 
 	}
@@ -161,75 +158,30 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:/index";
 	}
-	
-	@RequestMapping("/email_check") 
+
+	@RequestMapping("/email_check")
 	@ResponseBody
 	public Object checkEmail(String email) {
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
-		System.out.println("email:"+email);
-		
-		List<MemberVO> list = memberDao.checkEmail();
-		System.out.println(list.size());
-		
-		for(MemberVO vo:list){
-			//중복
-			System.out.println("asdf:"+vo.getEmail());
-			if(email.equals(vo.getEmail())){
+
+		List<MemberVO> list = memberService.mailList();
+
+		for (MemberVO vo : list) {
+			// 중복
+			System.out.println("asdf:" + vo.getEmail());
+			if (email.equals(vo.getEmail())) {
 				map.put("result", true);
 				map.put("data", "사용할 수 없습니다.");
 				break;
 			}
-			//사용가능
-			else{
+			// 사용가능
+			else {
 				map.put("result", false);
 				map.put("data", "사용할 수 있습니다.");
 				continue;
 			}
 		}
-		System.out.println(map);
 		return map;
 	}
-	
-	//private static final Log LOG = LogFactory.getLog( MemberController.class );
-	
-	
-	/*
-	@RequestMapping( "/upload" )
-	@ResponseBody
-	public String upload( @RequestParam Long deptNo, @RequestParam("file")MultipartFile file ) {
-        
-		LOG.debug( " ######## deptNo : " + deptNo );
-
-        String fileOriginalName = file.getOriginalFilename();
-        String extName = fileOriginalName.substring( fileOriginalName.lastIndexOf(".") + 1, fileOriginalName.length() );
-        String fileName = file.getName();
-        Long size = file.getSize();
-        
-        String saveFileName = "";
-        Calendar calendar = Calendar.getInstance();
-        
-        saveFileName += calendar.get( Calendar.YEAR );
-        saveFileName += calendar.get( Calendar.MONTH );
-        saveFileName += calendar.get( Calendar.DATE );
-        saveFileName += calendar.get( Calendar.HOUR );
-        saveFileName += calendar.get( Calendar.MINUTE );
-        saveFileName += calendar.get( Calendar.SECOND );
-        saveFileName += calendar.get( Calendar.MILLISECOND );
-        saveFileName += ( "." + extName );
-
-        
-        
-        LOG.debug( " ######## fileOriginalName : " + fileOriginalName );
-        LOG.debug( " ######## fileName : " + fileName );
-        LOG.debug( " ######## fileSize : " + size );
-        LOG.debug( " ######## fileExtensionName : " + extName );
-        LOG.debug( " ######## saveFileName : " + saveFileName );        
-
-        writeFile( file, "c:\\uploads", saveFileName );
-        
-		return "upload complete<br><a href='/fileupload/form'> back to upload form </a>";
-	}
-	
-	*/
 }
