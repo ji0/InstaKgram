@@ -32,6 +32,12 @@ public class DBoardDAO {
 			map.put("password", password);
 			sqlMapClientTemplate.delete("dboard.delete", map);
 	}
+	
+	public void replydelete(Long no) {
+		
+		
+		sqlMapClientTemplate.delete("dboard.replydelete", no);
+}
 
 	public void reply(ReplyVO vo) {
 

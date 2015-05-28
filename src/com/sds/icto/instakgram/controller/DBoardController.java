@@ -153,6 +153,13 @@ public class DBoardController {
 	}
 
 
+	@RequestMapping(value = "/replydelete")
+	public String replydelete(@RequestParam Long no) {
+
+		DboardService.DBreplyDelete(no);
+		return "redirect:/dboard/index";
+
+	}
 
 	@RequestMapping("/like_cnt")
 	@ResponseBody

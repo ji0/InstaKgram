@@ -165,6 +165,12 @@
 													<tr>
 														<td>${vo2.member_name}</td>
 														<td colspan=3>${vo2.content}</td>
+														<td>  <c:if test="${authMember.no == vo2.member_no}">
+
+													<a href="/InstaKgram/dboard/replydelete?no=${vo2.no}"><img
+														src="/InstaKgram/assets/images/recycle.png"></a>
+
+												</c:if>  </td>
 													</tr>
 													<br>
 												</c:if>

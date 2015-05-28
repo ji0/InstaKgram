@@ -57,6 +57,12 @@ public class DBoardService {
 		dboardDao.delete(no, password);
 
 	}
+	
+	public void DBreplyDelete(Long no) {
+
+		dboardDao.replydelete(no);
+
+	}
 
 	public void DBincLike(Map map) {
 

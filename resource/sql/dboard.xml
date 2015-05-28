@@ -75,6 +75,14 @@
 		where no = #no#
 		]]>
 	</delete>
+	
+	<delete id="replydelete" parameterClass="java.lang.Long">
+		<![CDATA[
+		delete 
+		from reply
+		where no = #no#
+		]]>
+	</delete>
 
 
 
