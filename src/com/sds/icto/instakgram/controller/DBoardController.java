@@ -190,4 +190,40 @@ public class DBoardController {
 		return map;
 	}
 
+	
+
+	@RequestMapping("/searchDBoard")
+	public String searchDBoard(@RequestParam Long member_no,
+			Model model, 
+			@RequestParam(value = "pageNum", required = false, defaultValue = "1" )
+			Long pageNum 
+			) {
+		
+		if(pageNum.equals(null)){
+			pageNum = (long) 1;
+		}
+		Long start = (pageNum - 1) * 5 + 1;
+		Long end = pageNum * 5;
+
+		
+		List<DBoardVO> list = DboardService.DBfetchList(start, end, member_no);
+
+		model.addAttribute("list", list);
+
+		List<DBoardVO> listcnt = DboardService.DBlistcnt();
+
+		model.addAttribute("count", listcnt.size());
+
+		List<ReplyVO> reply = DboardService.ReplyList();
+
+		model.addAttribute("reply", reply);
+		
+		
+	
+		model.addAttribute("reply", reply);
+		
+		return "dboard/list";
+		
+	}
+	
 }

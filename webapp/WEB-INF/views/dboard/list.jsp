@@ -145,6 +145,7 @@
 												</c:if></td>
 
 										</tr>
+										<c:if test="${!empty authMember.no}">
 										<tr>
 											<input type='hidden' name='no' value="${vo.no}">
 											<td colspan=4><input type='text' name='reply' id='reply'
@@ -152,12 +153,12 @@
 											<td>
 											
 											
-											<c:if test="${!empty authMember.no}">
+											
 											<input type="submit" VALUE=" 댓글 "
 												class="btn btn-primary">
-												</c:if></td>
+												</td>
 										</tr>
-
+</c:if>
 
 										<li><c:forEach items="${reply }" var="vo2"
 												varStatus="status">

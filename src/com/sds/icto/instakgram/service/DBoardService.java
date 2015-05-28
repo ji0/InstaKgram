@@ -21,6 +21,13 @@ public class DBoardService {
 
 		return list;
 	}
+	
+	public List<DBoardVO> DBfetchList(Long start, Long end, Long member_no) {
+	
+		List<DBoardVO> list = dboardDao.fetchList(start, end, member_no);
+
+		return list;
+	}
 
 	public List<DBoardVO> DBlistcnt() {
 		List<DBoardVO> listcnt = dboardDao.cntBasicList();
