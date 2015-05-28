@@ -79,7 +79,7 @@
 		</div>
 		<div id="content">
 			<div id="dboard">
-				<form action="/InstaKgram/dboard/insert" method="post">
+				<form action="/InstaKgram/dboard/insert" method="post" enctype="multipart/form-data">
 
 					<table>
 						<tr>
@@ -91,9 +91,14 @@
 							<td colspan=4><textarea name=content id="content"></textarea></td>
 						</tr>
 						<tr>
-							<td colspan=4 align=right><input type="submit" VALUE=" 확인 "></td>
+							<td colspan=4 align=right>
+								<input type="hidden" name="deptNo" value="10">
+								<input type="file" id ="file" name="file" value="사진등록하기"><br><br>	
+								<input type="submit" VALUE=" 확인 ">
+							</td>
 						</tr>
 					</table>
+					
 				</form>
 				<ul>
 					<li><c:forEach items="${list }" var="vo" varStatus="status">

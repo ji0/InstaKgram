@@ -1,5 +1,7 @@
 package com.sds.icto.instakgram.controller;
 
+import java.io.FileOutputStream;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.sds.icto.instakgram.domain.DBoardVO;
 import com.sds.icto.instakgram.domain.MemberVO;
@@ -91,7 +94,29 @@ public class DBoardController {
 	}
 	
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public String insert(HttpSession session, @RequestParam String content) {
+	public String insert(HttpSession session, @RequestParam String content,
+			@RequestParam Long deptNo, @RequestParam("file") MultipartFile file
+			) {
+		
+		String fileOriginalName = file.getOriginalFilename();
+		String extName = fileOriginalName.substring(
+				fileOriginalName.lastIndexOf(".") + 1,
+				fileOriginalName.length());
+		
+		String saveFileName = "";
+		Calendar calendar = Calendar.getInstance();
+
+		saveFileName += calendar.get(Calendar.YEAR);
+		saveFileName += calendar.get(Calendar.MONTH);
+		saveFileName += calendar.get(Calendar.DATE);
+		saveFileName += calendar.get(Calendar.HOUR);
+		saveFileName += calendar.get(Calendar.MINUTE);
+		saveFileName += calendar.get(Calendar.SECOND);
+		saveFileName += calendar.get(Calendar.MILLISECOND);
+		saveFileName += ("." + extName);
+
+		writeFile(file, "c:\\uploads", saveFileName);
+		
 		
 		DBoardVO vo = new DBoardVO();
 		vo.setContent(content);
@@ -99,14 +124,33 @@ public class DBoardController {
 		MemberVO vo2 = (MemberVO) session.getAttribute("authMember");
 		vo.setMember_no(vo2.getNo());
 		vo.setMember_name((String)vo2.getName());
+		vo.setPic_ref(saveFileName);
 		
-			/*	vo.setPassword(password);
-		vo.setMessage(message);
-		*/
 		dboardDao.insert(vo);
 
 		return "redirect:/dboard/index";
 	}
+	
+	
+	private void writeFile( MultipartFile file, String path, String fileName ) {
+		FileOutputStream fos = null;
+		try {
+			byte fileData[] = file.getBytes();
+			fos = new FileOutputStream( path + "\\" + fileName );
+			fos.write(fileData);
+		} catch (Exception e) {	
+			e.printStackTrace();
+		} finally {
+			if (fos != null) {
+				try {
+					fos.close();
+				} catch (Exception e) {
+				}
+			}
+		}
+	}
+	
+	
 	
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	// 링크??겟방??

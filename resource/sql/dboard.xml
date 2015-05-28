@@ -14,7 +14,7 @@
    
 	<insert id="insert" parameterClass="DBoardVO">
 		<![CDATA[
-		insert into dboard values(dboard_no_seq.nextval, '1', #content#, 0, #member_name#, #member_no#, sysdate)
+		insert into dboard values(dboard_no_seq.nextval, '1', #content#, 0, #member_no#,#member_name# ,sysdate)
 		
 		]]>
 	</insert>
